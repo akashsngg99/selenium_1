@@ -6,17 +6,16 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class test_1 {
 	public static void main(String[] args) {
 		System.setProperty("webdriver.edge.driver", "D:/softwares/selenium/edgedriver_win64/msedgedriver.exe");
 
         WebDriver driver = new EdgeDriver();
-
-        driver.get("https://www.google.com");
-        
-       
         driver.get("https://www.saucedemo.com");
+        //driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
 
         WebElement usernameInput = driver.findElement(By.id("user-name"));
         WebElement passwordInput = driver.findElement(By.id("password"));
@@ -30,12 +29,14 @@ public class test_1 {
         addToCartButton.click();
         
         
-        driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
+        WebDriverWait wait = new WebDriverWait(driver, 100);
+        WebElement checkoutButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\\\"shopping_cart_container\\\"]/a")));
+        checkoutButton.click();
 
         
-        WebElement orderButton = driver.findElement(By.xpath("//*[@id=\"shopping_cart_container\"]/a"));
-
-        orderButton.click();
+        //WebElement orderButton = driver.findElement(By.xpath("//*[@id=\"shopping_cart_container\"]/a"));
+        
+        //orderButton.click();
 
 	}
 

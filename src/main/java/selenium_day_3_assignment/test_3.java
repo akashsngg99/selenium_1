@@ -43,18 +43,18 @@ public class test_3 {
         
         int rows = st.getLastRowNum() + 1;
         int cols = st.getRow(0).getLastCellNum();
-        System.out.println(rows + "  " + cols);
+        //System.out.println(rows + "  " + cols);
         String cellData = st.getRow(rows - 1).getCell(cols - 1).toString();
-        System.out.println(cellData);
+        /*System.out.println(cellData);
         for(int i =1;i<=rows;i++) {
         	for(int j=1;j<=cols;j++) {
         		System.out.println(st.getRow(i - 1).getCell(j - 1).toString());
         	}
-        }
-        for(int i=0;i<10;i++) {
+        }*/
+        
         WebElement textBox = driver.findElement(By.xpath("//input[@id='myTextInput']"));
         textBox.sendKeys(cellData);
-        }
+        System.out.println(cellData);
 
         wb.close();	
         driver.close();
